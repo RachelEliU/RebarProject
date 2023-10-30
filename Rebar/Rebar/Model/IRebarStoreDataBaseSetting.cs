@@ -1,4 +1,4 @@
-﻿namespace RebarProject.Models
+﻿namespace Rebar.Model
 {
     public interface IRebarStoreDataBaseSetting
     {

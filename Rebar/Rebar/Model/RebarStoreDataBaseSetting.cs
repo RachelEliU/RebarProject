@@ -1,5 +1,5 @@
 ﻿
-namespace RebarProject.Models
+namespace Rebar.Model
 {
     public class RebarStoreDataBaseSetting : IRebarStoreDataBaseSetting
     {

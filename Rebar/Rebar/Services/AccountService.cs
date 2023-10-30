@@ -1,29 +1,29 @@
 ﻿using MongoDB.Driver;
-using RebarProject.Models;
+using Rebar.Model;
 using System;
 
-namespace RebarProject.Services
+namespace Rebar.Services
 {
     public class AccountService : IAccountService
     {
         private readonly MongoClient _client;
-        private readonly IMongoCollection<Order> _orders;
+        private readonly IMongoCollection<Account> _account;
         public AccountService(IRebarStoreDataBaseSetting settings, IMongoClient mongoClient)
         {
-            MongoClient.
+
             var database = mongoClient.GetDatabase(settings.DatabaseName);
-            _orders = database.GetCollection<Order>(settings.OrderCollectionName);
+            _account = database.GetCollection<Account>(settings.OrderCollectionName);
         }
 
-        public Order CreateOrder(Order order)
+        public Account CreateOrder(Account account)
         {
-            _orders.InsertOne(order);
-            return order;
+            _account.InsertOne(account);
+            return account;
         }
 
         public void DeleteOrder(Guid id)
         {
-            _orders.DeleteOne(order => order.Id == id);
+            _account.DeleteOne(account => account.Id == id);
         }
 
         public double GetBalance()
@@ -36,19 +36,19 @@ namespace RebarProject.Services
             return 0;   
         }
 
-        public Order GetOrder(Guid id)
+        public Account GetOrder(Guid id)
         {
-            return _orders.Find(order => order.Id == id).FirstOrDefault();
+            return _account.Find(account => account.Id == id).FirstOrDefault();
         }
 
-        public List<Order> GetOrders()
+        public List<Account> GetOrders()
         {
-            return _orders.Find(order => true).ToList();
+            return _account.Find(account => true).ToList();
         }
 
-        public void UpdateOrder(Guid id,Order order)
+        public void UpdateOrder(Guid id,Account account)
         {
-            _orders.ReplaceOne(order => order.Id == id, order);
+            _account.ReplaceOne(account => account.Id == id, account);
         }
     }
 }

@@ -1,3 +1,9 @@
+using Microsoft.Extensions.Options;
+using MongoDB.Driver;
+using MongoDB.Driver.Core.Configuration;
+using Rebar.Model;
+using Rebar.Services;
+
 namespace Rebar
 {
     public class Program
@@ -7,6 +13,10 @@ namespace Rebar
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.Configure<RebarStoreDataBaseSetting>(builder.Configuration.GetSection(nameof(RebarStoreDataBaseSetting)));
+            builder.Services.AddSingleton<IRebarStoreDataBaseSetting>(sp=>sp.GetRequiredService<IOptions<RebarStoreDataBaseSetting>>().Value);
+            builder.Services.AddSingleton<IMongoClient>(s=> new MongoClient(builder.Configuration.GetValue<string>("RebarStoreDataBaseSetting:ConnectionString")));
+            builder.Services.AddScoped<IOrderService,OrderService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

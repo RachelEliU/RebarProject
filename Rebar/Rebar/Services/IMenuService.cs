@@ -1,6 +1,6 @@
-﻿using RebarProject.Models;
+﻿using Rebar.Model;
 
-namespace RebarProject.Services
+namespace Rebar.Services
 {
     public interface IMenuService
     {

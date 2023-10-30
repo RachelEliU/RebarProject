@@ -2,7 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using Rebar.Model;
 
-namespace RebarProject.Models
+namespace Rebar.Model
 {
     public class Order
     {

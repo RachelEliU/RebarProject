@@ -1,13 +1,13 @@
-﻿using RebarProject.Models;
+﻿using Rebar.Model;
 
-namespace RebarProject.Services
+namespace Rebar.Services
 {
     public interface IAccountService
     {
-        List<Order> GetOrders();
-        Order GetOrder(Guid id);
-        Order CreateOrder(Order order);
-        void UpdateOrder(Guid id,Order order);
+        List<Account> GetOrders();
+        Account GetOrder(Guid id);
+        Account CreateOrder(Account account);
+        void UpdateOrder(Guid id,Account account);
         void DeleteOrder(Guid id);
         double GetBalance();
     }

@@ -1,7 +1,7 @@
-﻿using RebarProject.Models;
+﻿using Rebar.Model;
 using MongoDB.Driver;
 
-namespace RebarProject.Services
+namespace Rebar.Services
 
 {
     public class OrderService : IOrderService
@@ -24,7 +24,7 @@ namespace RebarProject.Services
             _orders.DeleteOne(order => order.Id == id);
         }
 
-        public Order GetOrder(Guid id)
+        public  Order GetOrder(Guid id)
         {
             return _orders.Find(order => order.Id == id).FirstOrDefault();
         }

@@ -2,7 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
 
-namespace RebarProject.Models
+namespace Rebar.Model
 {
     [BsonIgnoreExtraElements]
     public class Shake
