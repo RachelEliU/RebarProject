@@ -6,7 +6,7 @@ namespace RebarProject.Models
 {
     [BsonIgnoreExtraElements]
     public class Shake
-   {
+    {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public Guid Id { get; }
@@ -23,8 +23,6 @@ namespace RebarProject.Models
         [BsonElement("priceS")]
 
         public int PriceS { get; set; }
-        [BsonElement("ingredients")]
 
-        public List<Ingredient> Ingredients { get; set; }       
     }
 }

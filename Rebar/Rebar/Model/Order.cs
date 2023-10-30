@@ -1,5 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Rebar.Model;
+
 namespace RebarProject.Models
 {
     public class Order
@@ -8,7 +10,7 @@ namespace RebarProject.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public Guid Id { get; set; }
         [BsonElement("shakes")]
-        public List<Shake> Shakes { get; set; }
+        public List<ShakeInOrder> Shakes { get; set; }= new List<ShakeInOrder>();
         [BsonElement("clientname")]
         public string ClientName { get; set; }
         [BsonElement("totalcost")]
@@ -16,6 +18,12 @@ namespace RebarProject.Models
         [BsonElement("date")]
         public DateTime Date { get; set; }
         [BsonElement("discout")]
-        public List<String> Discount { get; set; }
+        public List<CouponsAndDiscounts> Discount { get; set; }
+        public Order(string name,DateTime date, List<CouponsAndDiscounts> discount)
+        {
+            Id = Guid.NewGuid();
+            Date = date;
+            Discount = discount;
+        }
     }
 }
