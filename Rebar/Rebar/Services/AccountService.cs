@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.JSInterop;
+using MongoDB.Driver;
 using Rebar.Model;
 using System;
 
@@ -8,47 +9,53 @@ namespace Rebar.Services
     {
         private readonly MongoClient _client;
         private readonly IMongoCollection<Account> _account;
+        private readonly IMongoCollection<Order> _orders;
         public AccountService(IRebarStoreDataBaseSetting settings, IMongoClient mongoClient)
         {
-
             var database = mongoClient.GetDatabase(settings.DatabaseName);
             _account = database.GetCollection<Account>(settings.OrderCollectionName);
+           // _orders = database.GetCollection<Order>(settings.OrderCollectionName);
         }
 
-        public Account CreateOrder(Account account)
-        {
-            _account.InsertOne(account);
-            return account;
+        public Order CreateOrder(Order order)
+        {          
+            _orders.InsertOne(order);
+            return order;
         }
 
         public void DeleteOrder(Guid id)
         {
-            _account.DeleteOne(account => account.Id == id);
+            _orders.DeleteOne(order => order.Id == id);
+        }
+
+        public Order GetOrder(Guid id)
+        {
+            return _orders.Find(order => order.Id == id).FirstOrDefault();
+        }
+
+        public List<Order> GetOrders()
+        {
+            return _orders.Find(order => true).ToList();
+        }
+        public List<ShakeInOrder> GetShakes(Guid id)
+        {
+            return GetOrder(id).Shakes;
+        }
+
+        public void UpdateOrder(Guid id, Order order)
+        {
+            _orders.ReplaceOne(order => order.Id == id, order);
         }
 
         public double GetBalance()
         {
-            /*int sum = 0;
-            foreach(var order in _orders.Find(order => true).ToList();) 
-            { 
-            
-            }*/
-            return 0;   
+            double sum = 0;
+            foreach(var order in _orders.Find(order => true).ToList()) 
+            {
+                sum += order.TotalCost;
+            }
+            return sum;   
         }
-
-        public Account GetOrder(Guid id)
-        {
-            return _account.Find(account => account.Id == id).FirstOrDefault();
-        }
-
-        public List<Account> GetOrders()
-        {
-            return _account.Find(account => true).ToList();
-        }
-
-        public void UpdateOrder(Guid id,Account account)
-        {
-            _account.ReplaceOne(account => account.Id == id, account);
-        }
+    
     }
 }

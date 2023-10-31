@@ -11,7 +11,7 @@ namespace Rebar.Model
         [BsonElement("orders")]
         public List<Order> Orders { get; set; }= new List<Order>();
         [BsonElement("sum")]
-        public double Sum {  get; set; }
+        public double Sum { get; set; } = 0;
         public Account()
         {
             Id = Guid.NewGuid();

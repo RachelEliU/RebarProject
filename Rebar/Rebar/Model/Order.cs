@@ -19,10 +19,10 @@ namespace Rebar.Model
         public DateTime Date { get; set; }
         [BsonElement("discout")]
         public List<CouponsAndDiscounts> Discount { get; set; }
-        public Order(string name,DateTime date, List<CouponsAndDiscounts> discount)
+        public Order(string name, List<CouponsAndDiscounts> discount)
         {
             Id = Guid.NewGuid();
-            Date = date;
+            Date = DateTime.Now;
             Discount = discount;
         }
     }

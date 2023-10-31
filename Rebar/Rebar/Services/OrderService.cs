@@ -8,10 +8,13 @@ namespace Rebar.Services
     {
         private readonly MongoClient _client;
         private readonly IMongoCollection<Order> _orders;
+        private readonly IMongoCollection<Shake> _shake;
         public OrderService(IRebarStoreDataBaseSetting settings,IMongoClient mongoClient) 
         {
           var database=  mongoClient.GetDatabase(settings.DatabaseName);
            _orders= database.GetCollection<Order>(settings.OrderCollectionName);
+           // _shake = database.GetCollection<Shake>(settings.ShakeCollectionName);
+          //  _order.FindAsync(x => x.Id == inputId).Result.ToListAsync().Result.Single();
         }
         public Order CreateOrder(Order order)
         {
@@ -32,6 +35,10 @@ namespace Rebar.Services
         public List<Order> GetOrders()
         {
             return _orders.Find(order => true).ToList();
+        }
+        public List<ShakeInOrder> GetShakes(Guid id)
+        {
+            return GetOrder(id).Shakes;
         }
 
         public void UpdateOrder(Guid id, Order order)

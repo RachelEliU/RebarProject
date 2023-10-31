@@ -2,7 +2,7 @@
 
 namespace Rebar.Services
 {
-    public interface IMenuService
+    public interface IShakeService
     {
         Shake CreateShake(Shake shake);
         void DeleteShake(Guid id);

@@ -10,8 +10,15 @@ namespace Rebar
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            /////
+            string connectionString = "mongodb://127.0.0.1:27017";
+            string databaseName = "reber_db";
 
+            var client = new MongoClient(connectionString);
+            var db = client.GetDatabase(databaseName);
+            /////
+            var builder = WebApplication.CreateBuilder(args);
+            Console.WriteLine("Hello");
             // Add services to the container.
             builder.Services.Configure<RebarStoreDataBaseSetting>(builder.Configuration.GetSection(nameof(RebarStoreDataBaseSetting)));
             builder.Services.AddSingleton<IRebarStoreDataBaseSetting>(sp=>sp.GetRequiredService<IOptions<RebarStoreDataBaseSetting>>().Value);
