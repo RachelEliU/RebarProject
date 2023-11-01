@@ -13,15 +13,16 @@ namespace Rebar.Model
     [BsonIgnoreExtraElements]
     public class Shake
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public Guid Id { get; }
+      //  [BsonId]
+      //  [BsonRepresentation(BsonType.ObjectId)]
+        public Guid Id { get; }= Guid.NewGuid();
         [BsonElement("name")]
         public string Name { get; set; }
-        [BsonElement("description")]
+       [BsonElement("description")]
 
         public string Description { get; set; }
-        public Pricing Price { get; set; }
+        [BsonElement("price")]
+        public double Price { get; set; }
 
       //  [BsonElement("priceL")]
        // public int PriceL { get; set; }
@@ -31,5 +32,11 @@ namespace Rebar.Model
       //  [BsonElement("priceS")]
 
        // public int PriceS { get; set; }
+       public Shake(string name,string description,double price) 
+        {
+            Name=name;
+            Description=description;
+            Price=price;
+        }
     }
 }

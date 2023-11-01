@@ -6,10 +6,13 @@ namespace Rebar.Services
     public class MenuService : IMenuService
     {
         private readonly IMongoCollection<Shake> _shakes;
+        //private ConnectionDB _connection;
         public MenuService(IRebarStoreDataBaseSetting settings, IMongoClient mongoClient)
         {
-            var database = mongoClient.GetDatabase(settings.DatabaseName);
-            _shakes = database.GetCollection<Shake>(settings.ShakeCollectionName);
+            //_connection=new ConnectionDB();
+            //_shakes = _connection.ConnectionMangoDB<Shake>(collectionShake);
+             var database = mongoClient.GetDatabase(settings.DatabaseName);
+             _shakes = database.GetCollection<Shake>(settings.ShakeCollectionName);
         }
         public Shake CreateShake(Shake shake)
         {

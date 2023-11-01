@@ -35,13 +35,19 @@ namespace Rebar.Controllers
         }
 
         // POST api/<MenuController>
-        [HttpPost]
-        public ActionResult<Shake> Post([FromBody] Shake shake)
-        {
+        /* [HttpPost]
+         public ActionResult<Shake> Post([FromBody] Shake shake)
+         {
 
-            _menuService.CreateShake(shake);
-            return CreatedAtAction(nameof(Get), new { id = shake.Id }, shake);
+             _menuService.CreateShake(shake);
+             return CreatedAtAction(nameof(Get), new { id = shake.Id }, shake);
+         }*/
+        [HttpPost (Name ="Post")]
+        public void Post(Shake shake)
+        {
+             _menuService.CreateShake(shake);
         }
+
 
         // PUT api/<MenuController>/5
         [HttpPut("{id}")]
