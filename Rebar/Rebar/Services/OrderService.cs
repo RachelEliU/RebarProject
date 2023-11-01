@@ -13,8 +13,6 @@ namespace Rebar.Services
         {
           var database=  mongoClient.GetDatabase(settings.DatabaseName);
            _orders= database.GetCollection<Order>(settings.OrderCollectionName);
-           // _shake = database.GetCollection<Shake>(settings.ShakeCollectionName);
-          //  _order.FindAsync(x => x.Id == inputId).Result.ToListAsync().Result.Single();
         }
         public Order CreateOrder(Order order)
         {

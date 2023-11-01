@@ -10,10 +10,5 @@ namespace Rebar.Services
         List<Order> GetOrders();
         List<ShakeInOrder> GetShakes(string id);
         void UpdateOrder(string id,Order order);
-
-        //Shake GetShake(Guid id);
-        //void DeleteShake(Guid id);
-        //Shake CreateShake(Shake shake);
-        // void UpdateShake(Guid id, Shake shake);
     }
 }
