@@ -9,12 +9,12 @@ namespace Rebar.Model
     {
         [BsonId]
         [BsonRepresentation(BsonType.String)]
-      public Guid Id { get; }= Guid.NewGuid();
-      //  public string Id { get; set; }=Guid.NewGuid().ToString();
+        public Guid Id { get; }= Guid.NewGuid();
+
         [BsonElement("name")]
         public string Name { get; set; }
-       [BsonElement("description")]
 
+       [BsonElement("description")]
         public string Description { get; set; }
 
        [BsonElement("pricel")]
