@@ -4,12 +4,6 @@ using MongoDB.Bson;
 
 namespace Rebar.Model
 {
-    public enum Pricing 
-    {
-        Small=24,
-        Medium=27,
-        Large=28,
-    }
     [BsonIgnoreExtraElements]
     public class Shake
     {
