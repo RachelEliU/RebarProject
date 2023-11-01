@@ -22,18 +22,18 @@ namespace Rebar.Model
        [BsonElement("description")]
 
         public string Description { get; set; }
-        [BsonElement("price")]
-       public double Price { get; set; }
+       // [BsonElement("price")]
+       //public double Price { get; set; }
 
-       //[BsonElement("pricel")]
-       // public int PriceL { get; set; }
+       [BsonElement("pricel")]
+        public int PriceL { get; set; }
 
-       //[BsonElement("pricem")]
-      // public int PriceM { get; set; }
+       [BsonElement("pricem")]
+       public int PriceM { get; set; }
 
-       // [BsonElement("prices")]
+        [BsonElement("prices")]
 
-       //  public int PriceS { get; set; }
+         public int PriceS { get; set; }
        public Shake(string name,string description,double price) 
         {
             Name=name;

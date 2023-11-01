@@ -69,7 +69,7 @@ namespace Rebar.Controllers
         }
 
         // CheckOut api/<AccountController>/5
-      /*  [HttpGet(Name = "CheckOut")]
+        /*[HttpGet(Name = "CheckOut")]
         public ActionResult CheckOut(string password,string id)
         {
             if(_accountService.GetAccount(id).Password.Equals(id))

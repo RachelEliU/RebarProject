@@ -17,7 +17,8 @@ namespace Rebar.Controllers
             }
             IsValidName(order.ClientName);           
             IsValidShake(order,  menuService);
-            total = order.Shakes.Sum(shake=>shake.Price);
+            IsValidSize(order,menuService);
+           total = order.Shakes.Sum(shake=>shake.Price);
         }
         public static void IsValidName(String inputName)
         {
@@ -34,14 +35,6 @@ namespace Rebar.Controllers
                 throw new ArgumentException($"Order can only have up to {MaxShakeInOrder} Shakes");
             }           
         }
-
-      /*  public static double ValidCoupones(CouponsAndDiscounts inputCoupones)
-        {
-            if (inputCoupones.Discount!=0 && )
-            {
-                return 
-            }
-        }*/
        
         public static void IsValidShake(Order order, IMenuService _menuService)
         {
@@ -61,5 +54,31 @@ namespace Rebar.Controllers
                 throw new ArgumentException("Name invalid, Please enter currect name");
             }
         }
+
+        public static void IsValidSize(Order order,IMenuService menuService)
+        {
+            foreach(var shake in order.Shakes)
+            {
+                if (shake.Size == null)
+                {
+                    throw new ArgumentNullException("No size of shake has been recived please enter S, M or L");
+                }
+                if (!shake.Size.Equals("s") && !shake.Size.Equals("M") && !shake.Size.Equals("L"))
+                {
+                    throw new ArgumentException("size of shake must be S, M or L");
+                }
+            }
+          //  UpdateShakePrice(order, menuService);
+        }
+       /* public void UpdateShakePrice(Order order , IMenuService menuService)
+        {
+            foreach (var shake in order.Shakes)
+            {
+                switch shake.Size
+                    case S:
+
+            }
+                shake.Price = menuService.GetShake(shake.Id);
+        }*/
     }
 }

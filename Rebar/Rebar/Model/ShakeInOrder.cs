@@ -9,7 +9,7 @@ namespace Rebar.Model
         public Guid IdShake { get; set; }
         public string Description { get;  set; }
         public int Price { get; private set; }
-        public int Type { get; set; }
+        public string Size { get; set; }
       
       
     }

@@ -72,7 +72,7 @@ namespace Rebar.Services
         {
             return _account.Find(account => account.Id == id).FirstOrDefault().Password;
         }
-        public List<Order> GetTodatOrder(string id)
+        public List<Order> GetTodayOrder(string id)
         {
             List<Order> orders = new List<Order>();
             foreach(var order in _account.Find(account => account.Id == id).FirstOrDefault().Orders)
@@ -82,6 +82,10 @@ namespace Rebar.Services
             }
             return orders;
            // return _account.Find(account => account.Id == id).FirstOrDefault().Orders.AddRange(item => item.DateOrder.Equals(DateTime.Today));
+        }
+        public double GetTodaySum(string id)
+        {
+            return GetTodayOrder(id).Sum(item => item.TotalCost);
         }
     }
 }
