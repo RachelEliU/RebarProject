@@ -81,7 +81,6 @@ namespace Rebar.Services
                     orders.Add(order) ;
             }
             return orders;
-           // return _account.Find(account => account.Id == id).FirstOrDefault().Orders.AddRange(item => item.DateOrder.Equals(DateTime.Today));
         }
         public double GetTodaySum(string id)
         {
