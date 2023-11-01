@@ -13,9 +13,10 @@ namespace Rebar.Model
     [BsonIgnoreExtraElements]
     public class Shake
     {
-      //  [BsonId]
-      //  [BsonRepresentation(BsonType.ObjectId)]
-        public Guid Id { get; }= Guid.NewGuid();
+        [BsonId]
+        [BsonRepresentation(BsonType.String)]
+      public Guid Id { get; }= Guid.NewGuid();
+      //  public string Id { get; set; }=Guid.NewGuid().ToString();
         [BsonElement("name")]
         public string Name { get; set; }
        [BsonElement("description")]

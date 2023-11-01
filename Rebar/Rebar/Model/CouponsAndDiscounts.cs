@@ -7,7 +7,7 @@ namespace Rebar.Model
     public class CouponsAndDiscounts
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+        [BsonRepresentation(BsonType.String)]
         public Guid Id { get; set; }
         [BsonElement("name")]
         public string Name {  get; set; }
@@ -15,12 +15,12 @@ namespace Rebar.Model
         public string Description { get; set; }
         [BsonElement("discount")]
         public double Discount {  get; set; }
-        public CouponsAndDiscounts(string name, string description,double discount)
+       /* public CouponsAndDiscounts(string name, string description,double discount)
         {
             Id = Guid.NewGuid( );
             Name = name;
             Description = description;
             Discount = discount;
-        }
+        }*/
     }
 }

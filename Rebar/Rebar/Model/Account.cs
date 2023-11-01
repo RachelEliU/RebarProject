@@ -5,8 +5,8 @@ namespace Rebar.Model
 {
     public class Account
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+       // [BsonId]
+      //  [BsonRepresentation(BsonType.ObjectId)]
         public Guid Id { get; set; }
         [BsonElement("orders")]
         public List<Order> Orders { get; set; }= new List<Order>();

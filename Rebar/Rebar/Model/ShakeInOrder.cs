@@ -4,11 +4,10 @@ namespace Rebar.Model
 {
     public class ShakeInOrder
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; } = Guid.NewGuid();
         public string Name { get; set; }
         public string Description { get; set; }
-        public ShakeInOrder()
-        {
-        }
+        public int Price { get; set; }
+      
     }
 }

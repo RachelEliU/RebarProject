@@ -34,14 +34,20 @@ namespace Rebar.Controllers
             }
             return order;
         }
-
+       
         // POST api/<OrdersController>
         [HttpPost]
-        public ActionResult<Order> Post([FromBody] Order order)
+         public ActionResult<Order> Post([FromBody] Order order)
+          {
+              _orderService.CreateOrder(order);
+              return CreatedAtAction(nameof(Get), new { id = order.Id }, order);
+          }
+      /*  [HttpGet("{order}", Name = "Post")]
+        public void Post(Order order)
         {
             _orderService.CreateOrder(order);
-            return CreatedAtAction(nameof(Get), new { id = order.Id }, order);
-        }
+            // return CreatedAtAction(nameof(Get), new { id = order.Id }, order);
+        }*/
 
         // PUT api/<OrdersController>/5
         [HttpPut("{id}")]
