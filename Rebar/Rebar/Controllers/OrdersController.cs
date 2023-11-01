@@ -12,9 +12,12 @@ namespace Rebar.Controllers
     public class OrdersController : ControllerBase
     {
         private readonly IOrderService _orderService;
-        public OrdersController(IOrderService orderService)
+        private readonly IMenuService _menuService;
+
+        public OrdersController(IOrderService orderService,IMenuService menuService)
         {
             _orderService = orderService;
+            _menuService = menuService;
         }
         // GET: api/<OrdersController>
         [HttpGet]
@@ -39,7 +42,7 @@ namespace Rebar.Controllers
        [HttpPost]
         public ActionResult<Order> Post([FromBody] Order order)
           {
-           //   Validation.CheckOrder(order);
+              Validation.CheckOrder(order,_menuService);
               _orderService.CreateOrder(order);
               return CreatedAtAction(nameof(Get), new { id = order.Id }, order);
           }

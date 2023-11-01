@@ -15,57 +15,70 @@ namespace Rebar.Controllers
         {
             _accountService = accountService;
         }
-        // GET: api/<OrdersController>
+        // GET: api/<AccountController>
         [HttpGet]
-        public ActionResult<List<Order>> Get()
+        public ActionResult<List<Account>> Get()
         {
-            return _accountService.GetOrders();
+            return _accountService.GetAccounts();
         }
 
-        // GET api/<OrdersController>/5
+        // GET api/<AccountController>/5
         [HttpGet("{id}")]
-        public ActionResult<Order> Get(string id)
+        public ActionResult<Account> Get(string id)
         {
-            var order = _accountService.GetOrder(id);
-            if (order == null)
+            var account = _accountService.GetAccount(id);
+            if (account == null)
             {
-                return NotFound($"Order with Id = {id} not found");
+                return NotFound($"Account with Id = {id} not found");
             }
-            return order;
+            return account;
         }
 
-        // POST api/<OrdersController>
+        // POST api/<AccountController>
         [HttpPost]
-        public ActionResult<Order> Post([FromBody] Order order)
+        public ActionResult<Account> Post([FromBody] Account account)
         {
-            _accountService.CreateOrder(order);
-            return CreatedAtAction(nameof(Get), new { id = order.Id }, order);
+            _accountService.CreateAccount(account);
+            return CreatedAtAction(nameof(Get), new { id = account.Id }, account);
         }
 
-        // PUT api/<OrdersController>/5
+        // PUT api/<AccountController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(string id, [FromBody] Order order)
+        public ActionResult Put(string id, [FromBody] Account account)
         {
-            var exitingOrder = _accountService.GetOrder(id);
-            if (exitingOrder == null)
+            var exitingAccount = _accountService.GetAccount(id);
+            if (exitingAccount == null)
             {
-                return NotFound($"Order with Id = {id} not found");
+                return NotFound($"Account with Id = {id} not found");
             }
-            _accountService.UpdateOrder(id, order);
+            _accountService.UpdateAccount(id, account);
             return NoContent();
         }
 
-        // DELETE api/<OrdersController>/5
+        // DELETE api/<AccountController>/5
         [HttpDelete("{id}")]
         public ActionResult Delete(string id)
         {
-            var order = _accountService.GetOrder(id);
-            if (order == null)
+            var account = _accountService.GetAccount(id);
+            if (account == null)
             {
                 return NotFound($"Order with Id ={id} not found");
             }
-            _accountService.DeleteOrder(order.Id);
-            return Ok($"Order with Id = {id} deleted");
+            _accountService.DeleteAccount(account.Id);
+            return Ok($"Account with Id = {id} deleted");
         }
+
+        // CheckOut api/<AccountController>/5
+      /*  [HttpGet(Name = "CheckOut")]
+        public ActionResult CheckOut(string password,string id)
+        {
+            if(_accountService.GetAccount(id).Password.Equals(id))
+            {
+
+                return Ok();
+
+            }
+            return NoContent();
+        }*/
     }
 }

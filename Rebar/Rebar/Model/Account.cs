@@ -10,8 +10,7 @@ namespace Rebar.Model
         public string Id { get; set; }=Guid.NewGuid().ToString();
         [BsonElement("orders")]
         public List<Order> Orders { get; set; }= new List<Order>();
-        [BsonElement("sum")]
-        public double Sum { get; set; } = 0;
+        [BsonElement("password")]
         public string Password {  get; set; }
     }
 }

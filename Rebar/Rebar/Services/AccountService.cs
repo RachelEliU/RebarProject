@@ -17,36 +17,42 @@ namespace Rebar.Services
            // _orders = database.GetCollection<Order>(settings.OrderCollectionName);
         }
 
-        public Order CreateOrder(Order order)
+        public Account CreateAccount(Account account)
         {          
-            _orders.InsertOne(order);
-            return order;
+            _account.InsertOne(account);
+            return account;
         }
 
-        public void DeleteOrder(string id)
+        public void DeleteAccount(string id)
         {
-            _orders.DeleteOne(order => order.Id == id);
+            _account.DeleteOne(account => account.Id == id);
         }
 
-        public Order GetOrder(string id)
+        public Account GetAccount(string id)
         {
-            return _orders.Find(order => order.Id == id).FirstOrDefault();
+            return _account.Find(account => account.Id == id).FirstOrDefault();
         }
 
-        public List<Order> GetOrders()
+        public List<Account> GetAccounts()
         {
-            return _orders.Find(order => true).ToList();
+            return _account.Find(account => true).ToList();
         }
-        public List<ShakeInOrder> GetShakes(string id)
+        public List<Order> GetOrders(string id)
         {
-            return GetOrder(id).Shakes;
-        }
-
-        public void UpdateOrder(string id, Order order)
-        {
-            _orders.ReplaceOne(order => order.Id == id, order);
+            return _account.Find(account => account.Id == id).FirstOrDefault().Orders;
         }
 
+        public void UpdateAccount(string id, Account account)
+        {
+            _account.ReplaceOne(account => account.Id == id, account);
+        }
+
+        public void UpdatePassword(string id, string password)
+        {
+            if(password.Length > 0)
+                GetAccount(id).Password = password;
+
+        }
         public double GetBalance()
         {
             double sum = 0;
@@ -56,6 +62,26 @@ namespace Rebar.Services
             }
             return sum;   
         }
-    
+        public void AddOrderToAccount(Order order, string id)
+        {
+            if(order != null)
+            _account.Find(account => account.Id == id).FirstOrDefault().Orders.Add(order) ;
+        }
+
+        public string GetPasswrodAccount(string id)
+        {
+            return _account.Find(account => account.Id == id).FirstOrDefault().Password;
+        }
+        public List<Order> GetTodatOrder(string id)
+        {
+            List<Order> orders = new List<Order>();
+            foreach(var order in _account.Find(account => account.Id == id).FirstOrDefault().Orders)
+            {
+                if(order.DateOrder.Equals(DateTime.Today))
+                    orders.Add(order) ;
+            }
+            return orders;
+           // return _account.Find(account => account.Id == id).FirstOrDefault().Orders.AddRange(item => item.DateOrder.Equals(DateTime.Today));
+        }
     }
 }

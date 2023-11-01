@@ -4,7 +4,7 @@ using Rebar.Services;
 
 namespace Rebar.Controllers
 {
-    public class Validation
+    public static class Validation
     {
         public const int MaxNameLatters = 100;
         public const int MaxShakeInOrder = 10;       
