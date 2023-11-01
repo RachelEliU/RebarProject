@@ -14,13 +14,6 @@ namespace Rebar.Model
         [BsonElement("description")]
         public string Description { get; set; }
         [BsonElement("discount")]
-        public double Discount {  get; set; }
-       /* public CouponsAndDiscounts(string name, string description,double discount)
-        {
-            Id = Guid.NewGuid( );
-            Name = name;
-            Description = description;
-            Discount = discount;
-        }*/
+       public double Discount {  get; set; }
     }
 }

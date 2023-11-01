@@ -23,12 +23,12 @@ namespace Rebar.Services
             return order;
         }
 
-        public void DeleteOrder(Guid id)
+        public void DeleteOrder(string id)
         {
             _orders.DeleteOne(order => order.Id == id);
         }
 
-        public Order GetOrder(Guid id)
+        public Order GetOrder(string id)
         {
             return _orders.Find(order => order.Id == id).FirstOrDefault();
         }
@@ -37,12 +37,12 @@ namespace Rebar.Services
         {
             return _orders.Find(order => true).ToList();
         }
-        public List<ShakeInOrder> GetShakes(Guid id)
+        public List<ShakeInOrder> GetShakes(string id)
         {
             return GetOrder(id).Shakes;
         }
 
-        public void UpdateOrder(Guid id, Order order)
+        public void UpdateOrder(string id, Order order)
         {
             _orders.ReplaceOne(order => order.Id == id, order);
         }

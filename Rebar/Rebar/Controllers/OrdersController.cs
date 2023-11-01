@@ -25,7 +25,7 @@ namespace Rebar.Controllers
 
         // GET api/<OrdersController>/5
         [HttpGet("{id}")]
-        public ActionResult<Order> Get(Guid id)
+        public ActionResult<Order> Get(string id)
         {
             var order = _orderService.GetOrder(id);
             if(order == null)
@@ -36,14 +36,17 @@ namespace Rebar.Controllers
         }
        
         // POST api/<OrdersController>
-        [HttpPost]
-         public ActionResult<Order> Post([FromBody] Order order)
+       [HttpPost]
+        public ActionResult<Order> Post([FromBody] Order order)
           {
+           //   Validation.CheckOrder(order);
               _orderService.CreateOrder(order);
               return CreatedAtAction(nameof(Get), new { id = order.Id }, order);
           }
-      /*  [HttpGet("{order}", Name = "Post")]
-        public void Post(Order order)
+
+
+       // [HttpGet("{order}", Name = "Post")]
+       /* public void Post(Order order)
         {
             _orderService.CreateOrder(order);
             // return CreatedAtAction(nameof(Get), new { id = order.Id }, order);
@@ -51,7 +54,7 @@ namespace Rebar.Controllers
 
         // PUT api/<OrdersController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(Guid id, [FromBody] Order order)
+        public ActionResult Put(string id, [FromBody] Order order)
         {
             var exitingOrder = _orderService.GetOrder(id);
             if(exitingOrder == null)
@@ -64,7 +67,7 @@ namespace Rebar.Controllers
 
         // DELETE api/<OrdersController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(string id)
         {
             var order = _orderService.GetOrder(id);
             if( order == null)

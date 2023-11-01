@@ -8,12 +8,12 @@ namespace Rebar.Model
     {
         [BsonId]
        [BsonRepresentation(BsonType.String)]
-        public Guid Id { get; set; } = Guid.NewGuid();
-      //  public string Id { get; set; } =Guid.NewGuid().ToString();
+        //[SwaggerSchema(ReadOnly = true)]
+        public String Id { get; private set; } = Guid.NewGuid().ToString();
         [BsonElement("shakes")]
         public List<ShakeInOrder> Shakes { get; set; }= new List<ShakeInOrder>();
         [BsonElement("clientname")]
-        public string ClientName { get; set; }
+        public string ClientName { get; set; }=string.Empty;
         [BsonElement("totalcost")]
         public double TotalCost { get; set; } = 0;
         [BsonElement("dateorder")]
@@ -21,13 +21,7 @@ namespace Rebar.Model
         [BsonElement("daterecive")]
 
         public DateTime DateRecive { get; set; }=DateTime.UtcNow;
-        [BsonElement("discout")]
-        public List<CouponsAndDiscounts> Discount { get; set; }
-       /* public Order(string name, List<CouponsAndDiscounts> discount)
-        {
-            DateOrder = DateTime.Now;
-            ClientName= name;
-            Discount = discount;
-        }*/
+        [BsonElement("discount")]
+        public CouponsAndDiscounts Discount { get; set; }
     }
 }

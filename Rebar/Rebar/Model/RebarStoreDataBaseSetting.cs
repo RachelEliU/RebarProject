@@ -5,7 +5,7 @@ namespace Rebar.Model
     {
         public string AccountCollectionName { get; set; } = "Account";
         public string MenuCollectionName { get; set; } = string.Empty;
-        public string OrderCollectionName { get; set; } = "Account";
+        public string OrderCollectionName { get; set; } = "Order";
         public string ShakeCollectionName {  get; set; }= "Shakes";
         public string ConnectionString { get; set; } = string.Empty;
         public string DatabaseName { get; set; } = string.Empty;

@@ -5,11 +5,11 @@ namespace Rebar.Services
     public interface IOrderService
     {
         Order CreateOrder(Order order);
-        void DeleteOrder(Guid id);
-        Order GetOrder(Guid id);
+        void DeleteOrder(string id);
+        Order GetOrder(string id);
         List<Order> GetOrders();
-        List<ShakeInOrder> GetShakes(Guid id);
-        void UpdateOrder(Guid id,Order order);
+        List<ShakeInOrder> GetShakes(string id);
+        void UpdateOrder(string id,Order order);
 
         //Shake GetShake(Guid id);
         //void DeleteShake(Guid id);
